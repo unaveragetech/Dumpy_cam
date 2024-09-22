@@ -30,8 +30,8 @@ The **Media Stream Controller** is a Python-Flask-based web application that all
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/media-stream-controller.git
-    cd media-stream-controller
+    git clone https://github.com/unaveragetech/Dumpy_cam.git
+    cd Dumpy_cam
     ```
 
 2. **Install dependencies**:
