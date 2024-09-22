@@ -1,6 +1,4 @@
-Here’s a detailed `README.md` for the media streaming tool with all the key features and how to use it:
 
----
 
 # Media Stream Controller
 
