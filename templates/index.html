@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Stream Example</title>
+</head>
+<body>
+    <h1>Media Stream Request</h1>
+    
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="startStream">Start Stream</button>
+    
+    <script>
+        const videoElement = document.getElementById('video');
+        const startStreamButton = document.getElementById('startStream');
+
+        startStreamButton.addEventListener('click', async () => {
+            try {
+                // Get the media stream
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: true
+                });
+
+                // Set the video element's source to the stream
+                videoElement.srcObject = stream;
+
+                // Send media stream info to backend (could be more complex in practice)
+                const response = await fetch('/get_stream', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ streamStarted: true })
+                });
+                const result = await response.json();
+                console.log(result.message);
+
+            } catch (error) {
+                console.error('Error accessing media devices.', error);
+            }
+        });
+    </script>
+</body>
+</html>
