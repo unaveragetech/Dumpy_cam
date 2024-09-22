@@ -1,4 +1,4 @@
-![Sprite Image](assets/sprite.png)
+![Sprite Image](assets/sprite.png)---- Dont let the cam slip give it a quick dip!
 
 
 # Media Stream Controller
@@ -118,7 +118,8 @@ By default, pictures and GIFs are saved in the root project directory. You can c
 
 ### Live Camera Feed and Controls
 
-![Live Camera Feed Screenshot](screenshots/camera-feed.png)-- will add at realease
+![Screenie Image 1](assets/Screenie.png)-- Not exactly what the script looks like just an example photo
+![Screenie Image 2](assets/screenie2.png) Not exactly what the script looks like just an example photo
 
 ### Image Gallery
 
