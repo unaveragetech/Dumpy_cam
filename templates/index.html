@@ -3,44 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Stream Example</title>
+    <title>Media Stream Controller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .stats, .gallery {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .gallery img {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        .stat-item {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        #camera_feed {
+            width: 100%;
+            height: 450px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Media Stream Request</h1>
-    
-    <video id="video" width="640" height="480" autoplay></video>
-    <button id="startStream">Start Stream</button>
-    
+    <div class="container">
+        <h1>Media Stream Controller</h1>
+
+        <!-- Camera Feed -->
+        <div>
+            <h2>Live Camera Feed</h2>
+            <img id="camera_feed" src="{{ url_for('video_feed') }}" alt="Live camera feed">
+        </div>
+
+        <!-- Controls Section -->
+        <div class="controls">
+            <button onclick="window.location.href='/toggle/on'">Turn Camera ON</button>
+            <button onclick="window.location.href='/toggle/off'">Turn Camera OFF</button>
+            <button onclick="window.location.href='/switch_camera/0'">Switch to Camera 1</button>
+            <button onclick="window.location.href='/switch_camera/1'">Switch to Camera 2</button>
+            <button onclick="window.location.href='/save_picture'">Save Picture</button>
+            <button onclick="window.location.href='/save_gif'">Save GIF</button>
+        </div>
+
+        <!-- Connection Info & Stats -->
+        <div class="stats">
+            <h2>Connection Stats</h2>
+            <p class="stat-item">Connection Duration: <span id="connection_duration">0 seconds</span></p>
+            <p class="stat-item">Total Pictures Taken: <span id="pictures_taken">0</span></p>
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="gallery">
+            <h2>Saved Pictures</h2>
+            <div id="image_gallery">
+                <!-- Saved images will be displayed here -->
+            </div>
+        </div>
+    </div>
+
     <script>
-        const videoElement = document.getElementById('video');
-        const startStreamButton = document.getElementById('startStream');
+        let startTime = new Date().getTime();
+        let picturesTaken = 0;
 
-        startStreamButton.addEventListener('click', async () => {
-            try {
-                // Get the media stream
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    video: true,
-                    audio: true
-                });
+        // Update connection duration every second
+        setInterval(function() {
+            let now = new Date().getTime();
+            let duration = Math.floor((now - startTime) / 1000);
+            document.getElementById('connection_duration').innerText = duration + ' seconds';
+        }, 1000);
 
-                // Set the video element's source to the stream
-                videoElement.srcObject = stream;
+        // Function to add saved pictures to the gallery
+        function addImageToGallery(imageUrl) {
+            let gallery = document.getElementById('image_gallery');
+            let img = document.createElement('img');
+            img.src = imageUrl;
+            gallery.appendChild(img);
+            picturesTaken++;
+            document.getElementById('pictures_taken').innerText = picturesTaken;
+        }
 
-                // Send media stream info to backend (could be more complex in practice)
-                const response = await fetch('/get_stream', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ streamStarted: true })
-                });
-                const result = await response.json();
-                console.log(result.message);
-
-            } catch (error) {
-                console.error('Error accessing media devices.', error);
-            }
-        });
+        // Example of dynamically adding an image (you would trigger this on save)
+        // addImageToGallery('/path_to_saved_image.jpg');
     </script>
 </body>
 </html>
