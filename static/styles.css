@@ -1,0 +1,71 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Live video stream */
+#videoFeed {
+    border: 2px solid #333;
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+    margin: 0 auto;
+}
+
+/* Control buttons */
+.control-buttons {
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 3px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Stats and gallery */
+.stats, .gallery {
+    margin-top: 30px;
+}
+
+.stats div {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.gallery img {
+    margin: 10px;
+    width: 150px;
+    height: auto;
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
