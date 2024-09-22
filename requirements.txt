@@ -3,3 +3,4 @@ opencv-python==4.8.0.74
 imageio==2.27.0
 imageio[ffmpeg]==2.27.0
 Pillow==9.3.0
+pyngrok
