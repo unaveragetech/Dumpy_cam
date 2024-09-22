@@ -1,3 +1,4 @@
+![Sprite Image](assets/sprite.png)
 
 
 # Media Stream Controller
