@@ -8,7 +8,7 @@ from PIL import Image
 import time
 from pyngrok import ngrok
 
-ngrok_auth_token = "2mRAvOaLfmabywfQsU89pyU9Ll1_3k6DUD1BJ7GHgNhqNKR8D"
+ngrok_auth_token = "your token here"
 
 
 app = Flask(__name__)
