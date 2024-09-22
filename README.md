@@ -119,7 +119,7 @@ By default, pictures and GIFs are saved in the root project directory. You can c
 ### Live Camera Feed and Controls
 
 ![Screenie Image 1](assets/Screenie.png)-- Not exactly what the script looks like just an example photo
-![Screenie Image 2](assets/screenie2.png) Not exactly what the script looks like just an example photo
+
 
 ### Image Gallery
 
@@ -134,3 +134,4 @@ Feel free to submit issues or pull requests to improve the tool. Contributions a
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
+![Screenie Image 2](assets/screenie2.png) A script focused on cam inrusion through python only lets get some pics Pyfam 
