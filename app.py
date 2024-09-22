@@ -5,6 +5,7 @@ import subprocess
 from imageio import get_writer
 from PIL import Image
 import time
+from pyngrok import ngrok
 
 app = Flask(__name__)
 
@@ -18,7 +19,7 @@ if not os.path.exists(output_directory):
 
 def check_dependencies():
     # Automatically install missing dependencies
-    required = ['opencv-python', 'flask', 'imageio', 'Pillow']
+    required = ['opencv-python', 'flask', 'imageio', 'Pillow', 'pyngrok']
     try:
         subprocess.check_call([sys.executable, '-m', 'pip', 'install', *required])
         print("All dependencies installed. Restarting the script.")
@@ -99,4 +100,10 @@ def index():
 
 if __name__ == '__main__':
     check_dependencies()
+    
+    # Start the ngrok tunnel
+    public_url = ngrok.connect(5000)
+    print(f"Ngrok Tunnel URL: {public_url}")
+    
+    # Start the Flask app
     app.run(host='0.0.0.0', port=5000, debug=True)
